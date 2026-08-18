@@ -20,7 +20,7 @@ const PAGE_TITLES = {
   '/settings': { title: 'Preferences & Storage', subtitle: 'Currency, themes, backups, and sample data' },
 }
 
-export default function Header({ onOpenAddModal, onToggleMobileMenu }) {
+export default function Header({ onOpenAddModal, onOpenInstallModal, onToggleMobileMenu }) {
   const location = useLocation()
   const { theme, toggleTheme, currency, setCurrency, currentMonthBudgets } = useExpense()
   const [showCurrencyMenu, setShowCurrencyMenu] = useState(false)
@@ -223,6 +223,24 @@ export default function Header({ onOpenAddModal, onToggleMobileMenu }) {
           title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
         >
           {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+        </button>
+
+        {/* Install on Device CTA */}
+        <button
+          onClick={onOpenInstallModal}
+          className="btn btn-secondary btn-sm"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.4rem',
+            fontWeight: 600,
+            borderColor: 'rgba(99, 102, 241, 0.4)',
+            backgroundColor: 'var(--primary-light)',
+          }}
+          title="Install on Mobile / PC"
+        >
+          <TrendingUp size={14} color="var(--primary)" />
+          <span>Install App</span>
         </button>
 
         {/* Quick Add Income / Expense */}

@@ -4,12 +4,14 @@ import Sidebar from './Sidebar'
 import Header from './Header'
 import TransactionModal from '../modals/TransactionModal'
 import CategoryModal from '../modals/CategoryModal'
+import InstallAppModal from '../modals/InstallAppModal'
 
 export default function DashboardLayout() {
   const [collapsed, setCollapsed] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [transactionModalOpen, setTransactionModalOpen] = useState(false)
   const [categoryModalOpen, setCategoryModalOpen] = useState(false)
+  const [installModalOpen, setInstallModalOpen] = useState(false)
   const [modalDefaultType, setModalDefaultType] = useState('expense')
   const [editingTransaction, setEditingTransaction] = useState(null)
   const [editingCategory, setEditingCategory] = useState(null)
@@ -39,12 +41,14 @@ export default function DashboardLayout() {
         collapsed={collapsed}
         setCollapsed={setCollapsed}
         onOpenAddModal={() => handleOpenAddModal('expense')}
+        onOpenInstallModal={() => setInstallModalOpen(true)}
       />
 
       {/* Main Content Area */}
       <div className={`main-content ${collapsed ? 'collapsed' : ''}`}>
         <Header
           onOpenAddModal={handleOpenAddModal}
+          onOpenInstallModal={() => setInstallModalOpen(true)}
           onToggleMobileMenu={() => setMobileMenuOpen(!mobileMenuOpen)}
         />
 
@@ -54,6 +58,7 @@ export default function DashboardLayout() {
               onOpenAddModal: handleOpenAddModal,
               onOpenEditModal: handleOpenEditModal,
               onOpenCategoryModal: handleOpenCategoryModal,
+              onOpenInstallModal: () => setInstallModalOpen(true),
             }}
           />
         </main>
@@ -73,6 +78,12 @@ export default function DashboardLayout() {
         onClose={() => setCategoryModalOpen(false)}
         initialData={editingCategory}
         defaultType={modalDefaultType}
+      />
+
+      {/* Global Install App & Multi-Device Modal */}
+      <InstallAppModal
+        isOpen={installModalOpen}
+        onClose={() => setInstallModalOpen(false)}
       />
     </div>
   )

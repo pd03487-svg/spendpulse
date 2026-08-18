@@ -14,7 +14,7 @@ import {
 } from 'lucide-react'
 import { useExpense } from '../../context/ExpenseContext'
 
-export default function Sidebar({ collapsed, setCollapsed, onOpenAddModal }) {
+export default function Sidebar({ collapsed, setCollapsed, onOpenAddModal, onOpenInstallModal }) {
   const { currentMonthBudgets } = useExpense()
   const exceededCount = currentMonthBudgets.filter((b) => b.status === 'exceeded').length
 
@@ -171,9 +171,44 @@ export default function Sidebar({ collapsed, setCollapsed, onOpenAddModal }) {
         })}
       </nav>
 
+      {/* Install App CTA */}
+      {!collapsed && (
+        <div style={{ padding: '0 0.75rem 0.5rem 0.75rem' }}>
+          <button
+            onClick={onOpenInstallModal}
+            className="btn btn-secondary btn-sm"
+            style={{
+              width: '100%',
+              padding: '0.55rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.45rem',
+              borderRadius: 'var(--radius-md)',
+              border: '1px solid rgba(99, 102, 241, 0.3)',
+              backgroundColor: 'var(--primary-light)',
+              color: 'var(--text-primary)',
+              fontWeight: 600,
+              fontSize: '0.8rem',
+            }}
+          >
+            <TrendingUp size={14} color="var(--primary)" />
+            <span>📲 Install on Device</span>
+          </button>
+        </div>
+      )}
+
       {/* Footer Toggle / Status */}
       {collapsed && (
-        <div style={{ padding: '0.75rem 0', display: 'flex', justifyContent: 'center' }}>
+        <div style={{ padding: '0.75rem 0', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+          <button
+            onClick={onOpenInstallModal}
+            className="btn-icon"
+            title="Install App"
+            style={{ width: 32, height: 32, color: 'var(--primary)' }}
+          >
+            <TrendingUp size={16} />
+          </button>
           <button
             onClick={() => setCollapsed(false)}
             className="btn-icon"
@@ -188,7 +223,7 @@ export default function Sidebar({ collapsed, setCollapsed, onOpenAddModal }) {
       {!collapsed && (
         <div
           style={{
-            padding: '1rem 1.25rem',
+            padding: '0.85rem 1.25rem',
             borderTop: '1px solid var(--border-subtle)',
             fontSize: '0.75rem',
             color: 'var(--text-muted)',

@@ -1,0 +1,50 @@
+{
+  "name": "SpendPulse — Smart Expense & Income Tracker",
+  "short_name": "SpendPulse",
+  "description": "Track income, expenses, category budgets, monthly charts, and export financial PDF/CSV reports.",
+  "start_url": "/",
+  "id": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0b0f19",
+  "theme_color": "#0f172a",
+  "categories": ["finance", "productivity", "utilities", "business"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192 512x512 any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "View Transactions",
+      "short_name": "Ledger",
+      "description": "Open your complete transactions ledger",
+      "url": "/transactions",
+      "icons": [{ "src": "/icon.svg", "sizes": "192x192" }]
+    },
+    {
+      "name": "Analytics & Charts",
+      "short_name": "Analytics",
+      "description": "View monthly trends and category donut charts",
+      "url": "/analytics",
+      "icons": [{ "src": "/icon.svg", "sizes": "192x192" }]
+    },
+    {
+      "name": "Category Budgets",
+      "short_name": "Budgets",
+      "description": "Manage monthly category spending limits",
+      "url": "/budgets",
+      "icons": [{ "src": "/icon.svg", "sizes": "192x192" }]
+    },
+    {
+      "name": "Export Statement",
+      "short_name": "Reports",
+      "description": "Generate and download PDF/CSV statements",
+      "url": "/reports",
+      "icons": [{ "src": "/icon.svg", "sizes": "192x192" }]
+    }
+  ]
+}

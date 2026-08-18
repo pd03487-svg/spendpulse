@@ -109,6 +109,36 @@ export default function SettingsPage() {
         </div>
       )}
 
+      {/* Multi-Device Installation & App Download */}
+      <div className="card" style={{ background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(30, 41, 59, 0.7) 100%)', border: '1px solid var(--border-medium)' }}>
+        <div className="card-header">
+          <div>
+            <h3 className="card-title">
+              <Download size={18} color="var(--primary)" />
+              <span>Install SpendPulse on Your Devices</span>
+            </h3>
+            <p className="card-subtitle">Run SpendPulse as a standalone native app on iPhone, Android, Windows, Mac, or Linux</p>
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+            <div style={{ padding: '0.85rem', backgroundColor: 'var(--bg-tertiary)', borderRadius: 'var(--radius-md)', fontSize: '0.82rem' }}>
+              <div style={{ fontWeight: 700, marginBottom: '0.25rem' }}>📱 Mobile (iOS & Android)</div>
+              <div>Open in Safari / Chrome and tap <strong>"Add to Home Screen"</strong> or <strong>"Install App"</strong>.</div>
+            </div>
+            <div style={{ padding: '0.85rem', backgroundColor: 'var(--bg-tertiary)', borderRadius: 'var(--radius-md)', fontSize: '0.82rem' }}>
+              <div style={{ fontWeight: 700, marginBottom: '0.25rem' }}>💻 PC & Mac (Desktop)</div>
+              <div>Click the <strong>Install icon</strong> in Chrome/Edge address bar or <strong>File &gt; Add to Dock</strong> in Safari.</div>
+            </div>
+            <div style={{ padding: '0.85rem', backgroundColor: 'var(--bg-tertiary)', borderRadius: 'var(--radius-md)', fontSize: '0.82rem' }}>
+              <div style={{ fontWeight: 700, marginBottom: '0.25rem' }}>🌐 Same Wi-Fi Access</div>
+              <div>Connect phone to this Wi-Fi and open <code>http://{window.location.hostname}:3000</code>.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Currency & Localization Settings */}
       <div className="card">
         <div className="card-header">
