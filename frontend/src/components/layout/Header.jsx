@@ -32,6 +32,7 @@ export default function Header({ onOpenAddModal, onOpenInstallModal, onToggleMob
   }
 
   const exceededBudgets = currentMonthBudgets.filter((b) => b.status === 'exceeded' || b.status === 'warning')
+  const isMobile = window.innerWidth <= 900
 
   return (
     <header
@@ -42,7 +43,7 @@ export default function Header({ onOpenAddModal, onOpenInstallModal, onToggleMob
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '0 2rem',
+        padding: isMobile ? '0 1rem' : '0 2rem',
         position: 'sticky',
         top: 0,
         zIndex: 40,
@@ -50,11 +51,11 @@ export default function Header({ onOpenAddModal, onOpenInstallModal, onToggleMob
       }}
     >
       {/* Title & Mobile Toggle */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? '0.5rem' : '1rem' }}>
         <button
           onClick={onToggleMobileMenu}
-          className="btn-icon mobile-menu-btn"
-          style={{ display: 'none' }}
+          className="btn-icon"
+          style={{ display: isMobile ? 'flex' : 'none' }}
           aria-label="Toggle Navigation"
         >
           <Menu size={20} />
@@ -63,7 +64,7 @@ export default function Header({ onOpenAddModal, onOpenInstallModal, onToggleMob
         <div>
           <h1
             style={{
-              fontSize: '1.25rem',
+              fontSize: isMobile ? '1.1rem' : '1.25rem',
               fontWeight: 700,
               color: 'var(--text-primary)',
               lineHeight: 1.2,
@@ -71,23 +72,25 @@ export default function Header({ onOpenAddModal, onOpenInstallModal, onToggleMob
           >
             {currentPage.title}
           </h1>
-          <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-            {currentPage.subtitle}
-          </p>
+          {!isMobile && (
+            <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+              {currentPage.subtitle}
+            </p>
+          )}
         </div>
       </div>
 
       {/* Action Controls */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? '0.5rem' : '0.75rem' }}>
         {/* Currency Switcher */}
         <div style={{ position: 'relative' }}>
           <button
             onClick={() => setShowCurrencyMenu(!showCurrencyMenu)}
-            className="btn btn-secondary btn-sm"
+            className={isMobile ? "btn-icon" : "btn btn-secondary btn-sm"}
             style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 600 }}
           >
-            <Coins size={15} color="var(--primary)" />
-            <span>{currency.code} ({currency.symbol})</span>
+            <Coins size={18} color="var(--primary)" />
+            {!isMobile && <span>{currency.code} ({currency.symbol})</span>}
           </button>
 
           {showCurrencyMenu && (
@@ -247,19 +250,21 @@ export default function Header({ onOpenAddModal, onOpenInstallModal, onToggleMob
         <div style={{ display: 'flex', gap: '0.35rem' }}>
           <button
             onClick={() => onOpenAddModal('income')}
-            className="btn btn-success btn-sm"
+            className={isMobile ? "btn-icon btn-success" : "btn btn-success btn-sm"}
             title="Quick Add Income"
+            style={isMobile ? {width: 38, height: 38} : {}}
           >
-            <TrendingUp size={15} />
-            <span>Income</span>
+            <TrendingUp size={18} />
+            {!isMobile && <span>Income</span>}
           </button>
           <button
             onClick={() => onOpenAddModal('expense')}
-            className="btn btn-danger btn-sm"
+            className={isMobile ? "btn-icon btn-danger" : "btn btn-danger btn-sm"}
             title="Quick Add Expense"
+            style={isMobile ? {width: 38, height: 38} : {}}
           >
-            <TrendingDown size={15} />
-            <span>Expense</span>
+            <TrendingDown size={18} />
+            {!isMobile && <span>Expense</span>}
           </button>
         </div>
       </div>

@@ -1,18 +1,22 @@
+import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .database import engine, Base
-from .routers import transactions, categories, analytics, reports
+from app.routers import tasks_router, templates_router, settings_router
+from app.config import settings
 
-# Create database tables automatically
-Base.metadata.create_all(bind=engine)
-
-app = FastAPI(
-    title="SpendPulse API",
-    description="REST API service for SpendPulse Smart Expense & Income Tracker",
-    version="1.0.0",
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s"
 )
 
-# Enable CORS for local dev and frontend clients
+app = FastAPI(
+    title=settings.app_name,
+    version=settings.app_version,
+    description="BrowserMind: Autonomous AI Browser Agent for Intelligent Web Navigation, Research & Task Execution"
+)
+
+# CORS middleware for seamless frontend integration
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -22,16 +26,27 @@ app.add_middleware(
 )
 
 # Register routers
-app.include_router(transactions.router)
-app.include_router(categories.router)
-app.include_router(analytics.router)
-app.include_router(reports.router)
+app.include_router(tasks_router)
+app.include_router(templates_router)
+app.include_router(settings_router)
+
 
 @app.get("/")
-def root():
+async def root():
     return {
-        "app": "SpendPulse API",
-        "version": "1.0.0",
-        "status": "healthy",
+        "app": "BrowserMind",
+        "version": settings.app_version,
+        "status": "online",
         "docs": "/docs",
+        "description": "Autonomous AI Browser Agent for Web Navigation, Multi-Source Research & Verification"
     }
+
+
+@app.get("/health")
+async def health():
+    return {"status": "healthy"}
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)

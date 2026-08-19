@@ -42,6 +42,8 @@ export default function DashboardLayout() {
         setCollapsed={setCollapsed}
         onOpenAddModal={() => handleOpenAddModal('expense')}
         onOpenInstallModal={() => setInstallModalOpen(true)}
+        mobileOpen={mobileMenuOpen}
+        onCloseMobile={() => setMobileMenuOpen(false)}
       />
 
       {/* Main Content Area */}

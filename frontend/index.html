@@ -3,31 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="SpendPulse — Modern Expense & Income Tracking Software with visual analytics, category budgeting, monthly charts, and multi-format reports." />
-    <meta name="theme-color" content="#0f172a" />
-    <title>SpendPulse — Smart Expense & Income Tracker</title>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="SpendPulse" />
-    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
-    <link rel="apple-touch-icon" href="/icon.svg" />
-    <link rel="manifest" href="/manifest.json" />
+    <meta name="description" content="BrowserMind — Autonomous AI Browser Agent for Intelligent Web Navigation, Research & Task Execution." />
+    <meta name="theme-color" content="#090d16" />
+    <title>BrowserMind — Autonomous AI Browser Agent</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
-  <body>
+  <body class="bg-[#080c14] text-slate-100 antialiased selection:bg-indigo-500 selection:text-white">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').then(
-            (reg) => console.log('SpendPulse PWA ServiceWorker registered:', reg.scope),
-            (err) => console.log('SpendPulse PWA ServiceWorker registration failed:', err)
-          );
-        });
-      }
-    </script>
   </body>
 </html>
